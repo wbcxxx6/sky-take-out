@@ -4,4 +4,13 @@
 <mapper namespace="com.sky.mapper.EmployeeMapper">
 
 
+    <select id="list" resultType="com.sky.entity.Employee">
+        select e.name from employee e
+        <where>
+            <if test="name != null and name != ''">
+                and e.name like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by e.create_time desc
+    </select>
 </mapper>
